@@ -1,20 +1,24 @@
 variable "vsphere_tag_category_name" {
-  type    = string
-  default = "example-category"
+  type        = string
+  description = "The name of the vSphere tag category."
+  default     = "example-category"
 }
 
 variable "vsphere_tag_category_description" {
-  type    = string
-  default = null
+  type        = string
+  description = "The description of the vSphere tag category."
+  default     = null
 }
 
 variable "vsphere_tag_category_cardinality" {
-  type    = string
-  default = "MULTIPLE"
+  type        = string
+  description = "The number of tags that can be assigned from this category to a single object at once."
+  default     = "MULTIPLE"
 }
 
 variable "vsphere_tag_category_associable_types" {
-  type = list(string)
+  type        = list(string)
+  description = "A list object types that this category to which this category can be assigned (https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/resources/tag_category#associable-object-types)."
   default = [
     "Folder",
     "ClusterComputeResource",
@@ -37,15 +41,17 @@ variable "vsphere_tag_category_associable_types" {
 }
 
 variable "create_vsphere_tag_category" {
-  type    = bool
-  default = true
+  type        = bool
+  description = "If true, a new vSphere tag category will be created."
+  default     = true
 }
 
 variable "vsphere_tags" {
-  type = list(map(string))
+  type        = list(map(string))
+  description = "List of one or more maps of strings defining vSphere tags. Each map must only have 'name' & 'description' keys, and the value for 'name' cannot be empty."
   default = [
     {
-      name        = "Terraform"
+      name        = "terraform"
       description = "Managed by Terraform"
     },
     {
@@ -56,6 +62,7 @@ variable "vsphere_tags" {
 }
 
 variable "create_vsphere_tags" {
-  type    = bool
-  default = true
+  type        = bool
+  description = "If true, new vSphere tags will be created for each entry."
+  default     = true
 }
