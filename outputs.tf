@@ -5,5 +5,5 @@ output "vsphere_tag_category" {
 
 output "vsphere_tags" {
   description = "The list of vSphere tags."
-  value = var.create_vsphere_tags ? vsphere_tag.tags : data.vsphere_tag.tags
+  value       = var.create_vsphere_tags ? vsphere_tag.tags : data.vsphere_tag.tags
 }
