@@ -1,12 +1,6 @@
 output "vsphere_tag_category" {
   description = "The vSphere tag category."
-  value = {
-    name             = var.create_vsphere_tag_category ? vsphere_tag_category.category[0].name : data.vsphere_tag_category.category[0].name
-    description      = var.create_vsphere_tag_category ? vsphere_tag_category.category[0].description : data.vsphere_tag_category.category[0].description
-    cardinality      = var.create_vsphere_tag_category ? vsphere_tag_category.category[0].cardinality : data.vsphere_tag_category.category[0].cardinality
-    associable_types = var.create_vsphere_tag_category ? vsphere_tag_category.category[0].associable_types : data.vsphere_tag_category.category[0].associable_types
-    id               = var.create_vsphere_tag_category ? vsphere_tag_category.category[0].id : data.vsphere_tag_category.category[0].id
-  }
+  value       = var.create_vsphere_tag_category ? vsphere_tag_category.category : data.vsphere_tag_category.category
 }
 
 output "vsphere_tags" {
