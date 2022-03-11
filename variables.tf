@@ -5,7 +5,7 @@ variable "vsphere_tag_category_name" {
 
   validation {
     condition     = length(var.vsphere_tag_category_name) > 0
-    error_message = "Must be a string of more than one characters."
+    error_message = "Must be a string of one or more characters."
   }
 }
 
