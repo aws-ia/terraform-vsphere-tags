@@ -50,6 +50,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_vsphere_tag_category"></a> [vsphere\_tag\_category](#output\_vsphere\_tag\_category) | The vSphere tag category. |
-| <a name="output_vsphere_tags"></a> [vsphere\_tags](#output\_vsphere\_tags) | The list of vSphere tags. |
+| <a name="output_tag_category"></a> [tag\_category](#output\_tag\_category) | The vSphere tag category. |
+| <a name="output_tags"></a> [tags](#output\_tags) | The list of vSphere tags. |
 <!-- END_TF_DOCS -->
