@@ -5,7 +5,7 @@ variable "vsphere_tag_category_name" {
 
   validation {
     condition     = length(var.vsphere_tag_category_name) > 0
-    error_message = "Must be a string of more than one characters."
+    error_message = "Must be a string of one or more characters."
   }
 }
 
@@ -104,12 +104,12 @@ variable "vsphere_tags" {
   */
 
   validation {
-    condition = alltrue(concat(
-      [
-        length(var.vsphere_tags) > 0,
-      ],
-      [for t in var.vsphere_tags : alltrue([for k, v in t : (k == "name" && length(v) > 0) || k == "description"])],
-    ))
+    condition = length(var.vsphere_tags) > 0
+    error_message = "Must be a list of one or more maps of strings with only 'name' & 'description' keys, and the value for 'name' cannot be empty."
+  }
+
+  validation {
+    condition = alltrue([for t in var.vsphere_tags : alltrue([for k, v in t : (k == "name" && length(v) > 0) || k == "description"])])
     error_message = "Must be a list of one or more maps of strings with only 'name' & 'description' keys, and the value for 'name' cannot be empty."
   }
 }
