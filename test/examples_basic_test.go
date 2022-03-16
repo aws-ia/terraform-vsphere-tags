@@ -88,7 +88,7 @@ func TestExamplesImportCategoryImportTag(t *testing.T) {
 			"vsphere_tag_category_cardinality":      "SINGLE",
 			"create_vsphere_tag_category":           false,
 			"create_vsphere_tags":                   false,
-			"vsphere_tag_category_associable_types": []string{},
+			"vsphere_tag_category_associable_types": []string{"VirtualMachine"},
 			"vsphere_tags": []interface{}{
 				map[string]interface{}{
 					"name":        "terraform",
@@ -115,7 +115,7 @@ func TestExamplesImportCategoryNewTag(t *testing.T) {
 			"vsphere_tag_category_cardinality":      "SINGLE",
 			"create_vsphere_tag_category":           false,
 			"create_vsphere_tags":                   true,
-			"vsphere_tag_category_associable_types": []string{},
+			"vsphere_tag_category_associable_types": []string{"VirtualMachine"},
 			"vsphere_tags": []interface{}{
 				map[string]interface{}{
 					"name":        "project",
