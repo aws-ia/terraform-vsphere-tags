@@ -53,7 +53,7 @@ variable "vsphere_tag_category_associable_types" {
   nullable = false
 
   validation {
-    condition = length(var.vsphere_tag_category_associable_types) > 0
+    condition     = length(var.vsphere_tag_category_associable_types) > 0
     error_message = "Must be a list of one or more strings."
   }
 
