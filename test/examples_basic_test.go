@@ -30,10 +30,42 @@ func TestExamplesNewCategoryNewTags(t *testing.T) {
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
-		// Vars: map[string]interface{}{
-		// 	"myvar":     "test",
-		// 	"mylistvar": []string{"list_item_1"},
-		// },
+		Vars: map[string]interface{}{
+			"vsphere_tag_category_name":        "example-category",
+			"vsphere_tag_category_description": "",
+			"vsphere_tag_category_cardinality": "MULTIPLE",
+			"create_vsphere_tag_category":      true,
+			"create_vsphere_tags":              true,
+			"vsphere_tag_category_associable_types": []string{
+				"Folder",
+				"ClusterComputeResource",
+				"Datacenter",
+				"Datastore",
+				"StoragePod",
+				"DistributedVirtualPortgroup",
+				"DistributedVirtualSwitch",
+				"VmwareDistributedVirtualSwitch",
+				"HostSystem",
+				"com.vmware.content.Library",
+				"com.vmware.content.library.Item",
+				"HostNetwork",
+				"Network",
+				"OpaqueNetwork",
+				"ResourcePool",
+				"VirtualApp",
+				"VirtualMachine",
+			},
+			"vsphere_tags": []interface{}{
+				map[string]interface{}{
+					"name":        "terraform",
+					"description": "",
+				},
+				map[string]interface{}{
+					"name":        "project",
+					"description": "terraform-vsphere-tags",
+				},
+			},
+		},
 	}
 
 	defer terraform.Destroy(t, terraformOptions)
@@ -48,10 +80,18 @@ func TestExamplesImportCategoryImportTag(t *testing.T) {
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_tag_category_name":   "terraform",
-			"vsphere_tags":                []interface{}{map[string]interface{}{"name": "terraform", "description": ""}},
-			"create_vsphere_tag_category": false,
-			"create_vsphere_tags":         false,
+			"vsphere_tag_category_name":             "Terraform",
+			"vsphere_tag_category_description":      "",
+			"vsphere_tag_category_cardinality":      "SINGLE",
+			"create_vsphere_tag_category":           false,
+			"create_vsphere_tags":                   false,
+			"vsphere_tag_category_associable_types": []string{},
+			"vsphere_tags": []interface{}{
+				map[string]interface{}{
+					"name":        "Terraform",
+					"description": "",
+				},
+			},
 		},
 	}
 
@@ -67,10 +107,18 @@ func TestExamplesImportCategoryNewTag(t *testing.T) {
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_tag_category_name":   "terraform",
-			"vsphere_tags":                []interface{}{map[string]interface{}{"name": "project", "description": "terraform-vsphere-tags"}},
-			"create_vsphere_tag_category": false,
-			"create_vsphere_tags":         true,
+			"vsphere_tag_category_name":             "Terraform",
+			"vsphere_tag_category_description":      "",
+			"vsphere_tag_category_cardinality":      "SINGLE",
+			"create_vsphere_tag_category":           false,
+			"create_vsphere_tags":                   true,
+			"vsphere_tag_category_associable_types": []string{},
+			"vsphere_tags": []interface{}{
+				map[string]interface{}{
+					"name":        "project",
+					"description": "terraform-vsphere-tags",
+				},
+			},
 		},
 	}
 
