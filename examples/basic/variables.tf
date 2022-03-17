@@ -1,22 +1,22 @@
-variable "vsphere_tag_category_name" {
+variable "tag_category_name" {
   type        = string
   description = "The name of the vSphere tag category."
   default     = "example-category"
 }
 
-variable "vsphere_tag_category_description" {
+variable "tag_category_description" {
   type        = string
   description = "The description of the vSphere tag category."
   default     = null
 }
 
-variable "vsphere_tag_category_cardinality" {
+variable "tag_category_cardinality" {
   type        = string
   description = "The number of tags that can be assigned from this category to a single object at once."
   default     = "MULTIPLE"
 }
 
-variable "vsphere_tag_category_associable_types" {
+variable "tag_category_associable_types" {
   type        = list(string)
   description = "A list object types that this category to which this category can be assigned (https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/resources/tag_category#associable-object-types)."
   default = [
@@ -40,13 +40,13 @@ variable "vsphere_tag_category_associable_types" {
   ]
 }
 
-variable "create_vsphere_tag_category" {
+variable "create_tag_category" {
   type        = bool
   description = "If true, a new vSphere tag category will be created."
   default     = true
 }
 
-variable "vsphere_tags" {
+variable "tags" {
   type        = list(map(string))
   description = "List of one or more maps of strings defining vSphere tags. Each map must only have 'name' & 'description' keys, and the value for 'name' cannot be empty."
   default = [
@@ -61,7 +61,7 @@ variable "vsphere_tags" {
   ]
 }
 
-variable "create_vsphere_tags" {
+variable "create_tags" {
   type        = bool
   description = "If true, new vSphere tags will be created for each entry."
   default     = true

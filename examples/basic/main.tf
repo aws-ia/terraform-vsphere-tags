@@ -1,11 +1,11 @@
 module "vsphere_tags" {
   source = "../.."
 
-  vsphere_tag_category_name             = var.vsphere_tag_category_name
-  vsphere_tag_category_description      = var.vsphere_tag_category_description
-  vsphere_tag_category_associable_types = var.vsphere_tag_category_associable_types
-  vsphere_tag_category_cardinality      = var.vsphere_tag_category_cardinality
-  create_vsphere_tag_category           = var.create_vsphere_tag_category
-  vsphere_tags                          = var.vsphere_tags
-  create_vsphere_tags                   = var.create_vsphere_tags
+  tag_category_name             = var.tag_category_name
+  tag_category_description      = var.tag_category_description
+  tag_category_associable_types = var.tag_category_associable_types
+  tag_category_cardinality      = var.tag_category_cardinality
+  create_tag_category           = var.create_tag_category
+  tags                          = var.tags
+  create_tags                   = var.create_tags
 }

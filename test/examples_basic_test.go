@@ -11,10 +11,10 @@ import (
 
 // You must set these environment variables for this test
 const (
-	vsphere_user     = "VSPHERE_USER"
-	vsphere_password = "VSPHERE_PASSWORD"
-	vsphere_server   = "VSPHERE_SERVER"
-	// vsphere_allow_unverified_ssl = "VSPHERE_ALLOW_UNVERIFIED_SSL"
+	user     = "VSPHERE_USER"
+	password = "VSPHERE_PASSWORD"
+	server   = "VSPHERE_SERVER"
+	// allow_unverified_ssl = "VSPHERE_ALLOW_UNVERIFIED_SSL"
 
 	input_validation_test_failed_message = "Invalid '%s' value input validation test failed."
 )
@@ -26,20 +26,24 @@ func GetEnvOrExit(env_var string) {
 	}
 }
 
+func GetEnvsOrExit() {
+	GetEnvOrExit(user)
+	GetEnvOrExit(password)
+	GetEnvOrExit(server)
+}
+
 func TestExamplesNewCategoryNewTags(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_tag_category_name":        "example-category",
-			"vsphere_tag_category_description": "",
-			"vsphere_tag_category_cardinality": "MULTIPLE",
-			"create_vsphere_tag_category":      true,
-			"create_vsphere_tags":              true,
-			"vsphere_tag_category_associable_types": []string{
+			"tag_category_name":        "example-category",
+			"tag_category_description": "",
+			"tag_category_cardinality": "MULTIPLE",
+			"create_tag_category":      true,
+			"create_tags":              true,
+			"tag_category_associable_types": []string{
 				"Folder",
 				"ClusterComputeResource",
 				"Datacenter",
@@ -58,9 +62,9 @@ func TestExamplesNewCategoryNewTags(t *testing.T) {
 				"VirtualApp",
 				"VirtualMachine",
 			},
-			"vsphere_tags": []interface{}{
+			"tags": []interface{}{
 				map[string]interface{}{
-					"name":        "terraform",
+					"name":        "Terraform",
 					"description": "",
 				},
 				map[string]interface{}{
@@ -76,22 +80,20 @@ func TestExamplesNewCategoryNewTags(t *testing.T) {
 }
 
 func TestExamplesImportCategoryImportTag(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_tag_category_name":             "terraform",
-			"vsphere_tag_category_description":      "",
-			"vsphere_tag_category_cardinality":      "SINGLE",
-			"create_vsphere_tag_category":           false,
-			"create_vsphere_tags":                   false,
-			"vsphere_tag_category_associable_types": []string{"VirtualMachine"},
-			"vsphere_tags": []interface{}{
+			"tag_category_name":             "Terraform",
+			"tag_category_description":      "",
+			"tag_category_cardinality":      "SINGLE",
+			"create_tag_category":           false,
+			"create_tags":                   false,
+			"tag_category_associable_types": []string{"VirtualMachine"},
+			"tags": []interface{}{
 				map[string]interface{}{
-					"name":        "terraform",
+					"name":        "Terraform",
 					"description": "",
 				},
 			},
@@ -103,20 +105,18 @@ func TestExamplesImportCategoryImportTag(t *testing.T) {
 }
 
 func TestExamplesImportCategoryNewTag(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_tag_category_name":             "terraform",
-			"vsphere_tag_category_description":      "",
-			"vsphere_tag_category_cardinality":      "SINGLE",
-			"create_vsphere_tag_category":           false,
-			"create_vsphere_tags":                   true,
-			"vsphere_tag_category_associable_types": []string{"VirtualMachine"},
-			"vsphere_tags": []interface{}{
+			"tag_category_name":             "Terraform",
+			"tag_category_description":      "",
+			"tag_category_cardinality":      "SINGLE",
+			"create_tag_category":           false,
+			"create_tags":                   true,
+			"tag_category_associable_types": []string{"VirtualMachine"},
+			"tags": []interface{}{
 				map[string]interface{}{
 					"name":        "project",
 					"description": "terraform-vsphere-tags",
@@ -131,19 +131,17 @@ func TestExamplesImportCategoryNewTag(t *testing.T) {
 
 func TestExamplesNewCategoryImportTag(t *testing.T) {
 	// Create category and skip importing tags since they don't exist. Intentionally passes.
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_tag_category_name":        "example-category",
-			"vsphere_tag_category_description": "",
-			"vsphere_tag_category_cardinality": "MULTIPLE",
-			"create_vsphere_tag_category":      true,
-			"create_vsphere_tags":              false,
-			"vsphere_tag_category_associable_types": []string{
+			"tag_category_name":        "example-category",
+			"tag_category_description": "",
+			"tag_category_cardinality": "MULTIPLE",
+			"create_tag_category":      true,
+			"create_tags":              false,
+			"tag_category_associable_types": []string{
 				"Folder",
 				"ClusterComputeResource",
 				"Datacenter",
@@ -162,9 +160,9 @@ func TestExamplesNewCategoryImportTag(t *testing.T) {
 				"VirtualApp",
 				"VirtualMachine",
 			},
-			"vsphere_tags": []interface{}{
+			"tags": []interface{}{
 				map[string]interface{}{
-					"name":        "terraform",
+					"name":        "Terraform",
 					"description": "",
 				},
 			},
@@ -176,104 +174,92 @@ func TestExamplesNewCategoryImportTag(t *testing.T) {
 }
 
 func TestExamplesInvalidCategoryName(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_tag_category_name": "",
+			"tag_category_name": "",
 		},
 	}
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_tag_category_name"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "tag_category_name"))
 	}
 }
 
 func TestExamplesInvalidCategoryCardinality(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_tag_category_cardinality": "",
+			"tag_category_cardinality": "",
 		},
 	}
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_tag_category_cardinality"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "tag_category_cardinality"))
 	}
 }
 
 func TestExamplesInvalidCategoryAssociableTypesLength(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_tag_category_associable_types": []string{},
+			"tag_category_associable_types": []string{},
 		},
 	}
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_tag_category_associable_types"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "tag_category_associable_types"))
 	}
 }
 
 func TestExamplesInvalidCategoryAssociableTypesValue(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_tag_category_associable_types": []string{"test"},
+			"tag_category_associable_types": []string{"test"},
 		},
 	}
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_tag_category_associable_types"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "tag_category_associable_types"))
 	}
 }
 
 func TestExamplesInvalidTagLength(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_tags": []interface{}{},
+			"tags": []interface{}{},
 		},
 	}
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_tags"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "tags"))
 	}
 }
 
 func TestExamplesInvalidTagNumKeys(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_tags": []interface{}{map[string]interface{}{
+			"tags": []interface{}{map[string]interface{}{
 				"name": "test",
 			}},
 		},
@@ -281,19 +267,17 @@ func TestExamplesInvalidTagNumKeys(t *testing.T) {
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_tag_category_associable_types"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "tag_category_associable_types"))
 	}
 }
 
 func TestExamplesInvalidTagNameKey(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_tags": []interface{}{map[string]interface{}{
+			"tags": []interface{}{map[string]interface{}{
 				"name":        "",
 				"description": "",
 			}},
@@ -302,6 +286,6 @@ func TestExamplesInvalidTagNameKey(t *testing.T) {
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_tag_category_associable_types"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "tag_category_associable_types"))
 	}
 }
