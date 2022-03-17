@@ -64,7 +64,7 @@ func TestExamplesNewCategoryNewTags(t *testing.T) {
 			},
 			"tags": []interface{}{
 				map[string]interface{}{
-					"name":        "Terraform",
+					"name":        "terraform",
 					"description": "",
 				},
 				map[string]interface{}{
@@ -85,7 +85,7 @@ func TestExamplesImportCategoryImportTag(t *testing.T) {
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"tag_category_name":             "Terraform",
+			"tag_category_name":             "terraform",
 			"tag_category_description":      "",
 			"tag_category_cardinality":      "SINGLE",
 			"create_tag_category":           false,
@@ -93,7 +93,7 @@ func TestExamplesImportCategoryImportTag(t *testing.T) {
 			"tag_category_associable_types": []string{"VirtualMachine"},
 			"tags": []interface{}{
 				map[string]interface{}{
-					"name":        "Terraform",
+					"name":        "terraform",
 					"description": "",
 				},
 			},
@@ -110,7 +110,7 @@ func TestExamplesImportCategoryNewTag(t *testing.T) {
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"tag_category_name":             "Terraform",
+			"tag_category_name":             "terraform",
 			"tag_category_description":      "",
 			"tag_category_cardinality":      "SINGLE",
 			"create_tag_category":           false,
@@ -162,7 +162,7 @@ func TestExamplesNewCategoryImportTag(t *testing.T) {
 			},
 			"tags": []interface{}{
 				map[string]interface{}{
-					"name":        "Terraform",
+					"name":        "terraform",
 					"description": "",
 				},
 			},
