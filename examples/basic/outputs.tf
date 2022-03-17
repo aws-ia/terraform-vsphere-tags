@@ -1,9 +1,9 @@
-output "vsphere_tag_category" {
+output "tag_category" {
   description = "The vSphere tag category."
-  value       = module.vsphere_tags.vsphere_tag_category
+  value       = module.vsphere_tags.tag_category
 }
 
-output "vsphere_tags" {
+output "tags" {
   description = "The list of vSphere tags."
-  value       = module.vsphere_tags.vsphere_tags
+  value       = module.vsphere_tags.tags
 }

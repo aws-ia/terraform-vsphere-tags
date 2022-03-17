@@ -53,6 +53,11 @@ variable "vsphere_tag_category_associable_types" {
   nullable = false
 
   validation {
+    condition     = length(var.vsphere_tag_category_associable_types) > 0
+    error_message = "Must be a list of one or more strings."
+  }
+
+  validation {
     condition = alltrue([
       for t in var.vsphere_tag_category_associable_types : contains([
         "Folder",
@@ -104,12 +109,17 @@ variable "vsphere_tags" {
   */
 
   validation {
-    condition = length(var.vsphere_tags) > 0
-    error_message = "Must be a list of one or more maps of strings with only 'name' & 'description' keys, and the value for 'name' cannot be empty."
+    condition     = length(var.vsphere_tags) > 0
+    error_message = "Must be a list of one or more maps of strings."
   }
 
   validation {
-    condition = alltrue([for t in var.vsphere_tags : alltrue([for k, v in t : (k == "name" && length(v) > 0) || k == "description"])])
+    condition     = alltrue([for t in var.vsphere_tags : length(keys(t)) == 2])
+    error_message = "Must be a list of one or more maps of strings with exactly 2 keys."
+  }
+
+  validation {
+    condition     = alltrue([for t in var.vsphere_tags : alltrue([for k, v in t : (k == "name" && length(v) > 0) || k == "description"])])
     error_message = "Must be a list of one or more maps of strings with only 'name' & 'description' keys, and the value for 'name' cannot be empty."
   }
 }
