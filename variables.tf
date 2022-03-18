@@ -86,7 +86,7 @@ variable "tag_category_associable_types" {
 variable "create_tag_category" {
   type        = bool
   description = "If true, a new vSphere tag category will be created."
-  default     = false
+  default     = true
   nullable    = false
 }
 
@@ -127,6 +127,6 @@ variable "tags" {
 variable "create_tags" {
   type        = bool
   description = "If true, new vSphere tags will be created for each entry."
-  default     = false
+  default     = true
   nullable    = false
 }

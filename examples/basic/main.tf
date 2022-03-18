@@ -1,5 +1,7 @@
 module "vsphere_tags" {
-  source = "../.."
+  # source = "../.."
+  source  = "aws-ia/tags/vsphere"
+  version = "0.0.1"
 
   tag_category_name             = var.tag_category_name
   tag_category_description      = var.tag_category_description
