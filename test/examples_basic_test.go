@@ -9,12 +9,14 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// You must set these environment variables for this test
 const (
 	user     = "VSPHERE_USER"
 	password = "VSPHERE_PASSWORD"
 	server   = "VSPHERE_SERVER"
 	// allow_unverified_ssl = "VSPHERE_ALLOW_UNVERIFIED_SSL"
+
+	existing_category_name = "VSPHERE_EXISTING_CATEGORY_NAME"
+	existing_tag_name      = "VSPHERE_EXISTING_TAG_NAME"
 
 	input_validation_test_failed_message = "Invalid '%s' value input validation test failed."
 )
@@ -37,41 +39,44 @@ func TestExamplesNewCategoryNewTags(t *testing.T) {
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
+		// Vars: map[string]interface{}{
+		// 	"tag_category_name":        "example-category",
+		// 	"tag_category_description": "",
+		// 	"tag_category_cardinality": "MULTIPLE",
+		// 	"create_tag_category":      true,
+		// 	"create_tags":              true,
+		// 	"tag_category_associable_types": []string{
+		// 		"Folder",
+		// 		"ClusterComputeResource",
+		// 		"Datacenter",
+		// 		"Datastore",
+		// 		"StoragePod",
+		// 		"DistributedVirtualPortgroup",
+		// 		"DistributedVirtualSwitch",
+		// 		"VmwareDistributedVirtualSwitch",
+		// 		"HostSystem",
+		// 		"com.vmware.content.Library",
+		// 		"com.vmware.content.library.Item",
+		// 		"HostNetwork",
+		// 		"Network",
+		// 		"OpaqueNetwork",
+		// 		"ResourcePool",
+		// 		"VirtualApp",
+		// 		"VirtualMachine",
+		// 	},
+		// 	"tags": []interface{}{
+		// 		map[string]interface{}{
+		// 			"name":        "terraform",
+		// 			"description": "",
+		// 		},
+		// 		map[string]interface{}{
+		// 			"name":        "project",
+		// 			"description": "terraform-vsphere-tags",
+		// 		},
+		// 	},
 		Vars: map[string]interface{}{
-			"tag_category_name":        "example-category",
-			"tag_category_description": "",
-			"tag_category_cardinality": "MULTIPLE",
-			"create_tag_category":      true,
-			"create_tags":              true,
-			"tag_category_associable_types": []string{
-				"Folder",
-				"ClusterComputeResource",
-				"Datacenter",
-				"Datastore",
-				"StoragePod",
-				"DistributedVirtualPortgroup",
-				"DistributedVirtualSwitch",
-				"VmwareDistributedVirtualSwitch",
-				"HostSystem",
-				"com.vmware.content.Library",
-				"com.vmware.content.library.Item",
-				"HostNetwork",
-				"Network",
-				"OpaqueNetwork",
-				"ResourcePool",
-				"VirtualApp",
-				"VirtualMachine",
-			},
-			"tags": []interface{}{
-				map[string]interface{}{
-					"name":        "terraform",
-					"description": "",
-				},
-				map[string]interface{}{
-					"name":        "project",
-					"description": "terraform-vsphere-tags",
-				},
-			},
+			"create_tag_category": true,
+			"create_tags":         true,
 		},
 	}
 
@@ -81,19 +86,18 @@ func TestExamplesNewCategoryNewTags(t *testing.T) {
 
 func TestExamplesImportCategoryImportTag(t *testing.T) {
 	GetEnvsOrExit()
+	GetEnvOrExit(existing_category_name)
+	GetEnvOrExit(existing_tag_name)
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"tag_category_name":             "terraform",
-			"tag_category_description":      "",
-			"tag_category_cardinality":      "SINGLE",
-			"create_tag_category":           false,
-			"create_tags":                   false,
-			"tag_category_associable_types": []string{"VirtualMachine"},
+			"tag_category_name":   os.Getenv(existing_category_name),
+			"create_tag_category": false,
+			"create_tags":         false,
 			"tags": []interface{}{
 				map[string]interface{}{
-					"name":        "terraform",
+					"name":        os.Getenv(existing_tag_name),
 					"description": "",
 				},
 			},
@@ -106,22 +110,14 @@ func TestExamplesImportCategoryImportTag(t *testing.T) {
 
 func TestExamplesImportCategoryNewTag(t *testing.T) {
 	GetEnvsOrExit()
+	GetEnvOrExit(existing_category_name)
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"tag_category_name":             "terraform",
-			"tag_category_description":      "",
-			"tag_category_cardinality":      "SINGLE",
-			"create_tag_category":           false,
-			"create_tags":                   true,
-			"tag_category_associable_types": []string{"VirtualMachine"},
-			"tags": []interface{}{
-				map[string]interface{}{
-					"name":        "project",
-					"description": "terraform-vsphere-tags",
-				},
-			},
+			"tag_category_name":   os.Getenv(existing_category_name),
+			"create_tag_category": false,
+			"create_tags":         true,
 		},
 	}
 
@@ -132,37 +128,16 @@ func TestExamplesImportCategoryNewTag(t *testing.T) {
 func TestExamplesNewCategoryImportTag(t *testing.T) {
 	// Create category and skip importing tags since they don't exist. Intentionally passes.
 	GetEnvsOrExit()
+	GetEnvOrExit(existing_tag_name)
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"tag_category_name":        "example-category",
-			"tag_category_description": "",
-			"tag_category_cardinality": "MULTIPLE",
-			"create_tag_category":      true,
-			"create_tags":              false,
-			"tag_category_associable_types": []string{
-				"Folder",
-				"ClusterComputeResource",
-				"Datacenter",
-				"Datastore",
-				"StoragePod",
-				"DistributedVirtualPortgroup",
-				"DistributedVirtualSwitch",
-				"VmwareDistributedVirtualSwitch",
-				"HostSystem",
-				"com.vmware.content.Library",
-				"com.vmware.content.library.Item",
-				"HostNetwork",
-				"Network",
-				"OpaqueNetwork",
-				"ResourcePool",
-				"VirtualApp",
-				"VirtualMachine",
-			},
+			"create_tag_category": true,
+			"create_tags":         false,
 			"tags": []interface{}{
 				map[string]interface{}{
-					"name":        "terraform",
+					"name":        os.Getenv(existing_tag_name),
 					"description": "",
 				},
 			},
