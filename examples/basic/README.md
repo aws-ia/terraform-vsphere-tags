@@ -1,7 +1,7 @@
 <!-- BEGIN_TF_DOCS -->
 # Basic example
 
-If deployed with the default values, this example will create two [tags][tags]: 1/ `terraform` and 2/ `project` grouped in a [tag category][category] named `example-category` in your [VMware Cloud on AWS][vmconaws] or [VMware vSphere][vsphere] on&#8209;premises environment.
+If deployed with the default values, this example will create two [tags][tags]: 1/&nbsp;`terraform` and 2/&nbsp;`project` grouped in a [tag category][category] named `example-category` in your [VMware Cloud on AWS][vmconaws] or [VMware vSphere][vsphere] on&#8209;premises environment.
 
 ## Usage
 
@@ -33,7 +33,7 @@ tags = [{
 
 ### Deploy
 
-To deploy this example, execute the following: 1/ [`terraform init`][tf\_init], 2/ [`terraform plan`][tf\_plan], and 3/ [`terraform apply`][tf\_apply].
+To deploy this example, execute the following: 1/&nbsp;[`terraform init`][tf\_init], 2/&nbsp;[`terraform plan`][tf\_plan], and 3/&nbsp;[`terraform apply`][tf\_apply].
 
 ### Clean-up
 
