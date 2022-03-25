@@ -1,0 +1,29 @@
+# markdown-spellcheck spelling configuration file
+# Format - lines beginning # are comments
+# global dictionary is at the start, file overrides afterwards
+# one word per line, to define a file override use ' - filename'
+# where filename is relative to this configuration file
+associable
+aws-ia
+clustercomputeresource
+com.vmware.content.library
+com.vmware.content.library.item
+datacenter
+datastore
+distributedvirtualportgroup
+distributedvirtualswitch
+hostnetwork
+hostsystem
+metadata
+opaquenetwork
+resourcepool
+sddcs
+storagepod
+vcenter
+virtualapp
+virtualmachine
+vmware
+vmwaredistributedvirtualswitch
+vsphere
+vsphere_tag_category.category
+vsphere_tag.tags
