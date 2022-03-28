@@ -104,7 +104,7 @@ variable "tags" {
 
   validation {
     condition     = length(keys(var.tags)) > 0
-    error_message = "Must be a maps of strings with on or more key/value pairs."
+    error_message = "Must be a maps of strings with one or more key/value pairs."
   }
 }
 
