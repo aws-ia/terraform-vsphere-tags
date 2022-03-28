@@ -4,6 +4,6 @@ output "tag_category" {
 }
 
 output "tags" {
-  description = "The list of vSphere tags."
+  description = "The vSphere tags."
   value       = module.vsphere_tags.tags
 }

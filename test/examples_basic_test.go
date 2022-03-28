@@ -64,16 +64,11 @@ func TestExamplesNewCategoryNewTags(t *testing.T) {
 		// 		"VirtualApp",
 		// 		"VirtualMachine",
 		// 	},
-		// 	"tags": []interface{}{
-		// 		map[string]interface{}{
-		// 			"name":        "terraform",
-		// 			"description": "",
-		// 		},
-		// 		map[string]interface{}{
-		// 			"name":        "project",
-		// 			"description": "terraform-vsphere-tags",
-		// 		},
+		// 	"tags": map[string]interface{}{
+		// 		"terraform": "",
+		// 		"project": "terraform-vsphere-tags",
 		// 	},
+		// },
 		Vars: map[string]interface{}{
 			"create_tag_category": true,
 			"create_tags":         true,
@@ -95,11 +90,8 @@ func TestExamplesImportCategoryImportTag(t *testing.T) {
 			"tag_category_name":   os.Getenv(existing_category_name),
 			"create_tag_category": false,
 			"create_tags":         false,
-			"tags": []interface{}{
-				map[string]interface{}{
-					"name":        os.Getenv(existing_tag_name),
-					"description": "",
-				},
+			"tags": map[string]interface{}{
+				os.Getenv(existing_tag_name): "",
 			},
 		},
 	}
@@ -135,11 +127,8 @@ func TestExamplesNewCategoryImportTag(t *testing.T) {
 		Vars: map[string]interface{}{
 			"create_tag_category": true,
 			"create_tags":         false,
-			"tags": []interface{}{
-				map[string]interface{}{
-					"name":        os.Getenv(existing_tag_name),
-					"description": "",
-				},
+			"tags": map[string]interface{}{
+				os.Getenv(existing_tag_name): "",
 			},
 		},
 	}
@@ -218,49 +207,12 @@ func TestExamplesInvalidTagLength(t *testing.T) {
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"tags": []interface{}{},
+			"tags": map[string]interface{}{},
 		},
 	}
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
 		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "tags"))
-	}
-}
-
-func TestExamplesInvalidTagNumKeys(t *testing.T) {
-	GetEnvsOrExit()
-
-	terraformOptions := &terraform.Options{
-		TerraformDir: "../examples/basic",
-		Vars: map[string]interface{}{
-			"tags": []interface{}{map[string]interface{}{
-				"name": "test",
-			}},
-		},
-	}
-
-	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
-		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "tag_category_associable_types"))
-	}
-}
-
-func TestExamplesInvalidTagNameKey(t *testing.T) {
-	GetEnvsOrExit()
-
-	terraformOptions := &terraform.Options{
-		TerraformDir: "../examples/basic",
-		Vars: map[string]interface{}{
-			"tags": []interface{}{map[string]interface{}{
-				"name":        "",
-				"description": "",
-			}},
-		},
-	}
-
-	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
-		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "tag_category_associable_types"))
 	}
 }

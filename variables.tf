@@ -91,36 +91,20 @@ variable "create_tag_category" {
 }
 
 variable "tags" {
-  type        = list(map(string))
-  description = "List of one or more maps of strings defining vSphere tags. Each map must only have 'name' & 'description' keys, and the value for 'name' cannot be empty."
+  type        = map(string)
+  description = "Map of strings defining vSphere tag names and descriptions."
   nullable    = false
 
   /*
-  example = [
-    {
-      name        = "terraform"
-      description = "Managed by Terraform"
-    },
-    {
-      name        = "project"
-      description = "terraform-vsphere-tags"
-    },
-  ]
+  example = {
+    terraform = "Managed by Terraform"
+    project   = "terraform-vsphere-tags"
+  }
   */
 
   validation {
-    condition     = length(var.tags) > 0
-    error_message = "Must be a list of one or more maps of strings."
-  }
-
-  validation {
-    condition     = alltrue([for t in var.tags : length(keys(t)) == 2])
-    error_message = "Must be a list of one or more maps of strings with exactly 2 keys."
-  }
-
-  validation {
-    condition     = alltrue([for t in var.tags : alltrue([for k, v in t : (k == "name" && length(v) > 0) || k == "description"])])
-    error_message = "Must be a list of one or more maps of strings with only 'name' & 'description' keys, and the value for 'name' cannot be empty."
+    condition     = length(keys(var.tags)) > 0
+    error_message = "Must be a maps of strings with on or more key/value pairs."
   }
 }
 

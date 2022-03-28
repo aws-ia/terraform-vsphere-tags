@@ -22,16 +22,10 @@ module "vsphere_tags" {
   create_tag_category      = true
   create_tags              = true
 
-  tags = [
-    {
-      name        = "terraform"
-      description = "Managed by Terraform"
-    },
-    {
-      name        = "project"
-      description = "terraform-vsphere-tags"
-    },
-  ]
+  tags = {
+    terraform = "Managed by Terraform"
+    project   = "terraform-vsphere-tags"
+  }
 }
 ```
 
@@ -42,20 +36,14 @@ module "vsphere_tags" {
   source  = "aws-ia/vsphere-tags/vsphere"
   version = ">= 0.0.1"
 
-  tag_category_name        = "example-category"
-  create_tag_category      = false
-  create_tags              = true
+  tag_category_name   = "example-category"
+  create_tag_category = false
+  create_tags         = true
 
-  tags = [
-    {
-      name        = "terraform"
-      description = "Managed by Terraform"
-    },
-    {
-      name        = "project"
-      description = "terraform-vsphere-tags"
-    },
-  ]
+  tags = {
+    terraform = "Managed by Terraform"
+    project   = "terraform-vsphere-tags"
+  }
 }
 ```
 
@@ -66,20 +54,14 @@ module "vsphere_tags" {
   source  = "aws-ia/vsphere-tags/vsphere"
   version = ">= 0.0.1"
 
-  tag_category_name        = "example-category"
-  create_tag_category      = false
-  create_tags              = false
+  tag_category_name   = "example-category"
+  create_tag_category = false
+  create_tags         = false
 
-  tags = [
-    {
-      name        = "terraform"
-      description = "Managed by Terraform"
-    },
-    {
-      name        = "project"
-      description = "terraform-vsphere-tags"
-    },
-  ]
+  tags = {
+    terraform = "Managed by Terraform"
+    project   = "terraform-vsphere-tags"
+  }
 }
 ```
 
@@ -121,7 +103,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_tag_category_name"></a> [tag\_category\_name](#input\_tag\_category\_name) | The name of the vSphere tag category. | `string` | n/a | yes |
-| <a name="input_tags"></a> [tags](#input\_tags) | List of one or more maps of strings defining vSphere tags. Each map must only have 'name' & 'description' keys, and the value for 'name' cannot be empty. | `list(map(string))` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Map of strings defining vSphere tag names and descriptions. | `map(string)` | n/a | yes |
 | <a name="input_create_tag_category"></a> [create\_tag\_category](#input\_create\_tag\_category) | If true, a new vSphere tag category will be created. | `bool` | `true` | no |
 | <a name="input_create_tags"></a> [create\_tags](#input\_create\_tags) | If true, new vSphere tags will be created for each entry. | `bool` | `true` | no |
 | <a name="input_tag_category_associable_types"></a> [tag\_category\_associable\_types](#input\_tag\_category\_associable\_types) | A list object types that this category to which this category can be assigned (https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/resources/tag_category#associable-object-types). | `list(string)` | <pre>[<br>  "Folder",<br>  "ClusterComputeResource",<br>  "Datacenter",<br>  "Datastore",<br>  "StoragePod",<br>  "DistributedVirtualPortgroup",<br>  "DistributedVirtualSwitch",<br>  "VmwareDistributedVirtualSwitch",<br>  "HostSystem",<br>  "com.vmware.content.Library",<br>  "com.vmware.content.library.Item",<br>  "HostNetwork",<br>  "Network",<br>  "OpaqueNetwork",<br>  "ResourcePool",<br>  "VirtualApp",<br>  "VirtualMachine"<br>]</pre> | no |
