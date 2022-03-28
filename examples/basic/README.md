@@ -25,10 +25,9 @@ All of the variables in this example have default values, but if you would like 
 #### Example `terraform.tfvars`
 
 ```hcl
-tags = [{
-  "name"        = "override-example"
-  "description" = "This example overrides the default value for the tags input variable defined in the variables.tf file in this directory and will create a tag named 'override-example'."
-}]
+tags = {
+  override-example = "This example overrides the default value for the tags input variable defined in the variables.tf file in this directory and will create a tag named 'override-example'."
+}
 ```
 
 ### Deploy
@@ -65,7 +64,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_vsphere_tags"></a> [vsphere\_tags](#module\_vsphere\_tags) | aws-ia/vsphere-tags/vsphere | >= 0.0.1 |
+| <a name="module_vsphere_tags"></a> [vsphere\_tags](#module\_vsphere\_tags) | ../.. | n/a |
 
 ## Resources
 
@@ -81,7 +80,7 @@ No resources.
 | <a name="input_tag_category_cardinality"></a> [tag\_category\_cardinality](#input\_tag\_category\_cardinality) | The number of tags that can be assigned from this category to a single object at once. | `string` | `"MULTIPLE"` | no |
 | <a name="input_tag_category_description"></a> [tag\_category\_description](#input\_tag\_category\_description) | The description of the vSphere tag category. | `string` | `null` | no |
 | <a name="input_tag_category_name"></a> [tag\_category\_name](#input\_tag\_category\_name) | The name of the vSphere tag category. | `string` | `"example-category"` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | List of one or more maps of strings defining vSphere tags. Each map must only have 'name' & 'description' keys, and the value for 'name' cannot be empty. | `list(map(string))` | <pre>[<br>  {<br>    "description": "Managed by Terraform",<br>    "name": "terraform"<br>  },<br>  {<br>    "description": "terraform-vsphere-tags",<br>    "name": "project"<br>  }<br>]</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Map of strings defining vSphere tag names and descriptions. | `map(string)` | <pre>{<br>  "project": "terraform-vsphere-tags",<br>  "terraform": "Managed by Terraform"<br>}</pre> | no |
 
 ## Outputs
 

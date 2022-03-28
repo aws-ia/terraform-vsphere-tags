@@ -4,6 +4,6 @@ output "tag_category" {
 }
 
 output "tags" {
-  description = "The list of vSphere tags."
+  description = "The vSphere tags."
   value       = (var.create_tags) ? vsphere_tag.tags : data.vsphere_tag.tags
 }

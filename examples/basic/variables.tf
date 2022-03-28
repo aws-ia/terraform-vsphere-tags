@@ -47,18 +47,12 @@ variable "create_tag_category" {
 }
 
 variable "tags" {
-  type        = list(map(string))
-  description = "List of one or more maps of strings defining vSphere tags. Each map must only have 'name' & 'description' keys, and the value for 'name' cannot be empty."
-  default = [
-    {
-      name        = "terraform"
-      description = "Managed by Terraform"
-    },
-    {
-      name        = "project"
-      description = "terraform-vsphere-tags"
-    },
-  ]
+  type        = map(string)
+  description = "Map of strings defining vSphere tag names and descriptions."
+  default = {
+    terraform = "Managed by Terraform"
+    project   = "terraform-vsphere-tags"
+  }
 }
 
 variable "create_tags" {
