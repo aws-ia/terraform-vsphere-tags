@@ -1,10 +1,10 @@
 <!-- BEGIN_TF_DOCS -->
 # vSphere Tags Terraform Module
 
-Terraform module that either creates or imports a list of [tags][tags] grouped in a [tag category][category] in your [VMware Cloud on AWS][vmconaws] or [VMware vSphere][vsphere] on&#8209;premises environment for labeling your inventory objects with metadata to make it easier to sort and search for these objects.
+This Terraform module either creates or imports a list of [tags][tags] grouped in a [tag category][category] in your [VMware Cloud on AWS][vmconaws] or [VMware vSphere][vsphere] on&#8209;premises environment. You use these tags to label your inventory objects with metadata to make it easier to sort and search for these objects.
 
-Of note, tags and categories can span multiple [vCenter Server][vsphere] instances.
-When you use [Hybrid Linked Mode][hybrid], tags and tag categories are maintained across your linked domain, which means the on&#8209;premises and VMware Cloud on AWS software&#8209;defined data centers (SDDCs) share tags and tag attributes.
+Tags and categories can span multiple [vCenter Server][vsphere] instances.
+When you use [Hybrid Linked Mode][hybrid], tags and tag categories are maintained across your linked domain. So in this mode, the on&#8209;premises and VMware Cloud on AWS software&#8209;defined data centers (SDDCs) share tags and tag attributes.
 If multiple on&#8209;premises vCenter Server instances are configured to use [Enhanced Linked Mode][enhanced], tags and categories are replicated across the vCenter Server instances.
 
 ## Usage
