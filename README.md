@@ -13,7 +13,7 @@ If multiple on&#8209;premises vCenter Server instances are configured to use [En
 
 ```hcl
 module "vsphere_tags" {
-  source  = "aws-ia/vsphere-tags/vsphere"
+  source  = "aws-ia/tags/vsphere"
   version = ">= 0.0.1"
 
   tag_category_name        = "example-category"
@@ -33,7 +33,7 @@ module "vsphere_tags" {
 
 ```hcl
 module "vsphere_tags" {
-  source  = "aws-ia/vsphere-tags/vsphere"
+  source  = "aws-ia/tags/vsphere"
   version = ">= 0.0.1"
 
   tag_category_name   = "example-category"
@@ -51,7 +51,7 @@ module "vsphere_tags" {
 
 ```hcl
 module "vsphere_tags" {
-  source  = "aws-ia/vsphere-tags/vsphere"
+  source  = "aws-ia/tags/vsphere"
   version = ">= 0.0.1"
 
   tag_category_name   = "example-category"
