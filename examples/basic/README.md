@@ -64,7 +64,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_vsphere_tags"></a> [vsphere\_tags](#module\_vsphere\_tags) | ../.. | n/a |
+| <a name="module_vsphere_tags"></a> [vsphere\_tags](#module\_vsphere\_tags) | aws-ia/tags/vsphere | >= 0.0.1 |
 
 ## Resources
 
