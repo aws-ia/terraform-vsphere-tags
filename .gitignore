@@ -37,3 +37,7 @@ override.tf.json
 .terraformrc
 terraform.rc
 .terraform.lock.hcl
+
+# Include golang module config & hash files
+go.mod
+go.sum
