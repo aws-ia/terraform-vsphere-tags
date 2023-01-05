@@ -1,7 +1,7 @@
 <!-- BEGIN_TF_DOCS -->
 # vSphere Tags Terraform Module
 
-This Terraform module either creates or imports a list of [tags](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vcenterhost.doc/GUID-2FF21224-B6BC-499B-AD8B-D2C4309AD9DC.html) grouped in a [tag category](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vcenterhost.doc/GUID-BA3D1794-28F2-43F3-BCE9-3964CB207FB6.html) in your [VMware Cloud on AWS](https://aws.amazon.com/vmware/) or [VMware vSphere](https://docs.vmware.com/en/VMware-vSphere/index.html) on&#8209;premises environment.
+This Terraform module either creates or imports a list of [tags](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-esxi-management/GUID-16422FF7-235B-4A44-92E2-532F6AED0923.html) grouped in a [tag category](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-esxi-management/GUID-16422FF7-235B-4A44-92E2-532F6AED0923.html) in your [VMware Cloud on AWS](https://aws.amazon.com/vmware/) or [VMware vSphere](https://docs.vmware.com/en/VMware-vSphere/index.html) on&#8209;premises environment.
 You use these tags to label your inventory objects with metadata to make it easier to sort and search for these objects.
 
 Tags and categories can span multiple [vCenter Server](https://docs.vmware.com/en/VMware-vSphere/index.html) instances.
